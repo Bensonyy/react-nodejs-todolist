@@ -1,0 +1,34 @@
+@import "vars","mixin";
+//@import "compass/reset";
+@import "normalize";
+@import "compass/layout";
+@import "compass/css3";
+@import "compass/typography";
+@import "compass/utilities";
+
+//common start
+
+//common end
+
+
+//@import "icons";
+
+a,a:focus,button{
+  outline: 0 none;
+}
+a,button,.box,.form-control{
+  font:16px/1.5 "Microsoft Yahei",Arial,Helvetica,sans-serif;
+  color: #333;
+}
+.box{
+  margin-top: 3%;
+  padding-bottom: 3%;
+}
+.box .row{
+  margin-top: 1.5%;
+}
+@media (min-width: 1200px){
+  .container {
+      width: 970px;
+  }
+}

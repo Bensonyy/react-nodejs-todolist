@@ -1,0 +1,15 @@
+<%- include header %>
+<div class="container box" id="box">
+  <div class="row">
+    <h3><%= title %></h3>
+  </div>
+  <div id="main">
+
+  </div>
+<% if(list){%>
+  <input type="hidden" value="<%= list %>" id="list_data"/>
+<%}%>
+</div><!--/container-->
+<script src="/common.js"></script>
+<script src="/index.js"></script>
+<%- include footer %>

@@ -1,0 +1,22 @@
+@mixin bgground($img,$repeat,$pos) {
+  background: {
+     image: image-url($img);
+     repeat: $repeat;
+     position: $pos;
+   };
+}
+@mixin half-circle($size,$direction) {
+
+}
+
+@function torem($px){
+    @return $px / 10px * 1rem;
+}
+
+
+@mixin min-screen($res){
+  @media only screen and ( min-width: $res )
+  {
+    @content;
+  }
+}

@@ -1,0 +1,5 @@
+@import "compass/utilities/sprites";
+$icon-layout: horizontal;
+@import "icon/*.png";
+$icon-sprite-dimensions: true;
+@include all-icon-sprites();
