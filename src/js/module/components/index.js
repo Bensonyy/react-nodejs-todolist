@@ -1,6 +1,6 @@
 /**
  * React-Node-todo-list组件
- * @authors Binson (Binson.zhang@qq.com)
+ * @authors Binson (yongbingzhang@Ctrip.com)
  * @date    2016-04-06 20:03:11
  * @version v1.0
  */

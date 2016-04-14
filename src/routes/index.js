@@ -1,6 +1,6 @@
 /**
  * React-Node-todo-list组件
- * @authors Binson (Binson.zhang@qq.com)
+ * @authors Binson (yongbingzhang@Ctrip.com)
  * @date    2016-04-06 20:03:11
  * @version v1.0
  */
@@ -18,21 +18,24 @@ const router = (app) => {
         res.render('index', {
                     title: 'nodejs-reactjs 应用（todo-list），CURD 操作：',
                     list: json
+                  },function(err,html){
+                    if (err) {
+                      return;
+                    }
+                    res.send(html);
                   });
-      //res.json({data:arr});
       });
     });
 
     //新增一行数据
     app.post('/add',(req,res)=>{
-      console.log(req.body.post);
-      const post = new Post(req.body.post);
-      post.save((err)=>{
+      const post = new Post(req.body.value);
+      post.save((err,data)=>{
         if (err) {
           console.log(err);
           return ;
         };
-        res.redirect('/');
+        res.json({"data":data});
       });
     });
 
@@ -43,12 +46,12 @@ const router = (app) => {
       value:req.body.value,
       preValue:req.body.preValue
     };
-    Post.update(obj,(err)=>{
+    Post.update(obj,(err,data)=>{
       if (err) {
         console.log(err);
         return ;
       };
-      res.json({"success":1});
+      res.json({"data":data});
     });
   });
 

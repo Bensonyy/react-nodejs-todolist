@@ -46,11 +46,11 @@ module.exports = {
 
         // chunks: ["pageA", "pageB"],
         // (Only use these entries)
-      })/*,
+      }),
       new uglifyJsPlugin({
           compress: {
               warnings: false
           }
-      })*/
+      })
     ]
 };

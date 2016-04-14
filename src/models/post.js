@@ -1,6 +1,6 @@
 /**
  * React-Node-todo-list组件
- * @authors Binson (Binson.zhang@qq.com)
+ * @authors Binson (yongbingzhang@Ctrip.com)
  * @date    2016-04-06 20:03:11
  * @version v1.0
  */
@@ -13,10 +13,10 @@ function Post(value){
 
 //存储 value 到数据库
 Post.prototype.save = function(callback){
-
+  const that = this;
 	//存入数据库的字段信息
 	var post = {
-		value: this.value,
+		value: that.value,
 		time: time()
 	};
 
@@ -34,12 +34,12 @@ Post.prototype.save = function(callback){
 			};
 
 			//将文档插入集合
-			collection.insert(post,{safe:true},function(err){
+			collection.insert(post,{safe:true},function(err,data){
 				mongodb.close();
 				if (err) {
 					return callback(err); //失败返回err信息
 				};
-			  callback(null); //否则返回err为null
+			  callback(null,data.ops); //否则返回err为null,且返回该行数据
 			});
 		});
 	});
@@ -84,6 +84,7 @@ Post.update = function(obj,callback){
     }
 
     db.collection('posts',function(err,collection){
+      //mongodb.close();
       if (err) {
         mongodb.close();
         return callback(err);
@@ -91,8 +92,20 @@ Post.update = function(obj,callback){
       collection.update({value:obj.preValue},{
         value:obj.value,
         time:time()
+      },function(err){
+        if (err) {
+          mongodb.close();
+          return callback(err);
+        }
+        collection.find({value:obj.value}).toArray(function(err,data){
+          if (err) {
+            mongodb.close();
+            return callback(err);
+          }
+          callback(null,data); //否则返回err为null,且返回该行数据
+        });
       });
-      callback(null);
+
     });
   });
 };
